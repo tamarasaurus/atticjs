@@ -4,45 +4,59 @@ var _ = require('underscore');
 
 module.exports = (function() {
 
-	var attic = function(prefix) {
-		this.prefix = prefix;
-	};
+    var attic = function() {};
 
-	attic.prototype = {
-        supported: function(){
-            var test = 'test';
-            try {
-                localStorage.setItem(test, test);
-                localStorage.removeItem(test);
-                return true;
-            } catch (e) {
-                return false;
+    var supported = function() {
+        var test = 'test';
+        try {
+            localStorage.setItem(test, test);
+            localStorage.removeItem(test);
+            return true;
+        } catch (e) {
+            return false;
+        }
+    };
+
+    attic.prototype = {
+        hasKey: function(key) {
+            return !_.isUndefined(localStorage.getItem(key)) && !_.isEmpty(localStorage.getItem(key));
+        },
+        find: function(key) {
+            if (this.hasKey(key)) {
+                return localStorage.getItem(key).split(',');
+            } else {
+                return [];
             }
         },
-		get_key: function(key) {
-			// get a key from storage
-		},
-		get_value: function(key, value) {
-			// find a value in the key
-		},
-		store_key: function(key, value) {
-			// store a key value pair
-		},
-		remove_value: function(key, value) {
-			// remove a value from the key
-		},
-		remove_key: function(key) {
-            // remove a key from localstorage
-		},
-		empty: function() {
-			// remove all keys with the set prefix
-		}
+        hasValue: function(key, value) {
+            return _.contains(this.find(key), value.toString());
+        },
+        store: function(value, key) {
+            if (this.hasKey(key)) {
+                if (!this.hasValue(key, value)) {
+                    var arr = this.find(key);
+                    arr.push(value);
+                    localStorage.setItem(key, arr.toString());
+                }
+            } else {
+                localStorage.setItem(key, value.toString());
+            }
+            return localStorage.getItem(key);
+        },
+        clean: function(value, key) {
+            var result = _.without(this.find(key), value.toString());
+            localStorage.setItem(key, result.toString());
+            return result;
+        },
+        cleanKey: function(key){
+            localStorage.removeItem(key);
+        }
 
-	};
+    };
 
-    if(attic.supported()){
+    if (supported()) {
         return attic;
-    }else{
+    } else {
         console.log('localstorage not supported');
         return false;
     }
