@@ -1,7 +1,7 @@
 atticjs
 =======
 
-Small localstorage wrapper for storing arrays
+Small localstorage wrapper for storing arrays of strings, objects and arrays
 
 
 credits
