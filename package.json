@@ -1,0 +1,27 @@
+{
+  "name": "atticjs",
+  "version": "0.0.1",
+  "description": "Small localstorage wrapper with prefixing",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tamarasaurus/atticjs.git"
+  },
+  "keywords": [
+    "atticjs",
+    "localstorage",
+    "prefix"
+  ],
+  "author": "Tamara Chahine",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tamarasaurus/atticjs/issues"
+  },
+  "homepage": "https://github.com/tamarasaurus/atticjs",
+  "dependencies": {
+    "underscore": "^1.6.0"
+  }
+}
