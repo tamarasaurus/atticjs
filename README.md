@@ -1,7 +1,7 @@
 atticjs
 =======
 
-Small localstorage wrapper with prefixing
+Small localstorage wrapper for storing arrays
 
 
 credits
