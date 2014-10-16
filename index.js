@@ -63,7 +63,6 @@ module.exports = (function() {
 	if (supported()) {
 		return attic;
 	} else {
-		console.log('localstorage not supported');
 		return false;
 	}
 
